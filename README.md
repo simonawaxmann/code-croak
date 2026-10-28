@@ -44,5 +44,4 @@ Three lessons are included: Functions (logic + edge case), Clean code (naming + 
 **Kept from iteration 2:** labelled Hint, separate Exercise context, stepper only while reviewing, explicit *Back to Feedback*.
 
 **Iteration 3:** after the feedback, a *Lesson complete* screen summarises issues found, points and streak, shows total progress and offers an optional **View progress** action. A lesson only counts as completed (and earns points) when every issue is found and the decision is right; otherwise the student is asked to redo it.
-
-**Not added:** dark mode. The app only has the light theme. It will be asked about in the iteration 3 test.
+**Iteration 4:** Improved Back buttons and validation fields in the prototype.
