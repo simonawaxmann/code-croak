@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 240" role="img" aria-label="Frogy, the Code Croak mascot">
+ <ellipse cx="110" cy="232" rx="66" ry="7" fill="#1B4332" opacity=".12"/>
+ <g stroke="#1B4332" stroke-width="5" fill="#52B788">
+  <ellipse cx="88" cy="222" rx="17" ry="8"/><ellipse cx="132" cy="222" rx="17" ry="8"/>
+  <ellipse cx="110" cy="178" rx="48" ry="44"/>
+ </g>
+ <ellipse cx="110" cy="188" rx="29" ry="25" fill="#EAF7EF"/>
+ <ellipse cx="62" cy="182" rx="11" ry="19" transform="rotate(28 62 182)" fill="#52B788" stroke="#1B4332" stroke-width="5"/>
+ <line x1="181" y1="162" x2="164" y2="174" stroke="#1B4332" stroke-width="7" stroke-linecap="round"/>
+ <circle cx="194" cy="150" r="17" fill="#E3F4EA" stroke="#1B4332" stroke-width="5"/>
+ <path d="M186 144 Q190 138 197 139" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+ <ellipse cx="156" cy="172" rx="11" ry="17" transform="rotate(-30 156 172)" fill="#52B788" stroke="#1B4332" stroke-width="5"/>
+ 
+ <g stroke="#1B4332" stroke-width="10" fill="#52B788">
+  <ellipse cx="110" cy="108" rx="74" ry="54"/><circle cx="70" cy="66" r="24"/><circle cx="150" cy="66" r="24"/>
+ </g>
+ <g fill="#52B788"><ellipse cx="110" cy="108" rx="74" ry="54"/><circle cx="70" cy="66" r="24"/><circle cx="150" cy="66" r="24"/></g>
+ <ellipse cx="72" cy="70" rx="7" ry="9" fill="#1B4332"/><ellipse cx="148" cy="70" rx="7" ry="9" fill="#1B4332"/>
+ <circle cx="74.5" cy="66" r="2.6" fill="#fff"/><circle cx="150.5" cy="66" r="2.6" fill="#fff"/>
+ <circle cx="104" cy="94" r="2.6" fill="#1B4332"/><circle cx="116" cy="94" r="2.6" fill="#1B4332"/>
+ <ellipse cx="60" cy="114" rx="14" ry="10" fill="#FFC4A8"/><ellipse cx="160" cy="114" rx="14" ry="10" fill="#FFC4A8"/>
+ <path d="M95 116 Q110 131 125 116" fill="none" stroke="#1B4332" stroke-width="5" stroke-linecap="round"/>
+ <g stroke="#1B4332" stroke-width="5" stroke-linejoin="round">
+  <path d="M90 58 V42 H130 V58 Q110 64 90 58Z" fill="#2D6A4F"/>
+  <polygon points="110,18 152,32 110,46 68,32" fill="#2D6A4F"/>
+ </g>
+ <path d="M152 32 L156 52" stroke="#FFB703" stroke-width="4" stroke-linecap="round"/><circle cx="156.5" cy="55" r="5.5" fill="#FFB703" stroke="#1B4332" stroke-width="3"/>
+
+</svg>

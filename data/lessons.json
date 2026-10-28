@@ -1,0 +1,275 @@
+[
+  {
+    "id": "functions-basics",
+    "topicId": "functions",
+    "title": "Code Review Basics",
+    "description": "Review a small function that a teammate wrote and decide if it is ready to merge.",
+    "difficulty": "Easy",
+    "minutes": 5,
+    "exercises": 1,
+    "learn": [
+      "Compare code with its requirements",
+      "Write a constructive review comment",
+      "Make a final review decision"
+    ],
+    "exercise": {
+      "file": "grades.js",
+      "task": "Your teammate Lisa wrote a function that calculates the average grade of a student. The code runs without errors. Review her pull request.",
+      "requirements": [
+        "Returns the average of all grades in the list",
+        "Returns 0 when the list is empty",
+        "Does not change the original list"
+      ],
+      "example": { "input": "average([6, 8, 10])", "output": "8" },
+      "code": [
+        "function average(grades) {",
+        "  let sum = 0;",
+        "  for (let i = 1; i < grades.length; i++) {",
+        "    sum += grades[i];",
+        "  }",
+        "  return sum / grades.length;",
+        "}"
+      ],
+      "hint": {
+        "look": [
+          "Go through the requirements one by one and find the line that handles each one.",
+          "Check where loops start and stop.",
+          "Run the example input in your head. Do you get 8?",
+          "Think about edge cases, like an empty list."
+        ],
+        "write": [
+          "Point to the exact line you mean.",
+          "Explain why it is a problem, not only what to change.",
+          "Suggest a fix or ask a question.",
+          "Talk about the code, not about the person."
+        ]
+      },
+      "issues": [
+        {
+          "id": "f1",
+          "lines": [3],
+          "category": "Logic",
+          "title": "The loop skips the first grade",
+          "wrong": "The loop starts at i = 1, so grades[0] is never added to the sum.",
+          "why": "Every average is wrong. With [6, 8, 10] the function returns 6 instead of 8. Because the code runs without errors, this bug is easy to miss.",
+          "improve": "Start the loop at i = 0, or use a for...of loop so you cannot pick the wrong index.",
+          "fix": "  for (let i = 0; i < grades.length; i++) {"
+        },
+        {
+          "id": "f2",
+          "lines": [6],
+          "category": "Edge case",
+          "title": "An empty list returns NaN",
+          "wrong": "When grades is empty, the function calculates 0 / 0, which is NaN.",
+          "why": "The requirement says an empty list should return 0. NaN spreads through every calculation that uses it, so the bug shows up somewhere else.",
+          "improve": "Return 0 early when the list is empty, before dividing.",
+          "fix": "  if (grades.length === 0) return 0;"
+        }
+      ],
+      "expectedDecision": "request_changes",
+      "expert": {
+        "decision": "request_changes",
+        "summary": "Thanks Lisa, the function is short and easy to follow! Two requirements are not met yet, so I am requesting changes.",
+        "comments": [
+          {
+            "line": 3,
+            "type": "issue",
+            "text": "The loop starts at i = 1, so the first grade is never added. With [6, 8, 10] this returns 6 instead of 8. Could we start at i = 0?"
+          },
+          {
+            "line": 6,
+            "type": "issue",
+            "text": "For an empty list this divides 0 by 0 and returns NaN, but the requirement says it should return 0. Maybe add an early return when the list is empty?"
+          }
+        ],
+        "why": [
+          "Each comment points to one specific line.",
+          "It explains the impact with a concrete example.",
+          "Fixes are suggested as questions, which keeps the tone friendly.",
+          "It requests changes because the requirements are not met."
+        ]
+      }
+    }
+  },
+  {
+    "id": "clean-code-naming",
+    "topicId": "clean-code",
+    "title": "Naming & Readability",
+    "description": "This code works, but is it easy for your team to read and change?",
+    "difficulty": "Easy",
+    "minutes": 5,
+    "exercises": 1,
+    "learn": [
+      "Recognise unclear names",
+      "Spot magic numbers",
+      "Give feedback on code that already works"
+    ],
+    "exercise": {
+      "file": "course.js",
+      "task": "Your teammate Tom wrote a function that checks whether a student passed a course. All tests pass. Review his pull request.",
+      "requirements": [
+        "Students pass with a grade of 5.5 or higher",
+        "Students must attend at least 80% of the 20 lessons",
+        "Teammates should understand the code without asking Tom"
+      ],
+      "example": { "input": "check({ g: 7, a: 18 })", "output": "true" },
+      "code": [
+        "function check(s) {",
+        "  if (s.g >= 5.5) {",
+        "    if (s.a / 20 >= 0.8) {",
+        "      return true;",
+        "    }",
+        "  }",
+        "  return false;",
+        "}"
+      ],
+      "hint": {
+        "look": [
+          "The code works, so look past whether it is correct.",
+          "Would a new teammate understand every name?",
+          "Look for numbers without an explanation."
+        ],
+        "write": [
+          "Explain what was confusing for you as a reader.",
+          "Suggest a better name instead of only saying it is bad.",
+          "Keep the tone friendly. Working code is already a good start."
+        ]
+      },
+      "issues": [
+        {
+          "id": "c1",
+          "lines": [1, 2],
+          "category": "Readability",
+          "title": "Names do not explain what they mean",
+          "wrong": "check, s, g and a do not say what the function does or what the values are.",
+          "why": "Teammates have to read the whole function (or ask Tom) to understand it. Unclear names slow down every future review and change.",
+          "improve": "Use names that describe the meaning, like hasPassed(student), student.grade and student.attendance.",
+          "fix": "function hasPassed(student) {"
+        },
+        {
+          "id": "c2",
+          "lines": [3],
+          "category": "Maintainability",
+          "title": "Magic number 20",
+          "wrong": "20 is the number of lessons, but the code does not say so.",
+          "why": "If the course gets more lessons, someone has to find and change this hidden number. It is easy to forget.",
+          "improve": "Move it into a named constant like TOTAL_LESSONS, or pass the number of lessons in.",
+          "fix": "  if (student.attendance / TOTAL_LESSONS >= 0.8) {"
+        }
+      ],
+      "expectedDecision": "request_changes",
+      "expert": {
+        "decision": "request_changes",
+        "summary": "Nice work, Tom. The logic is correct! A few small readability changes will make this much easier for the rest of us.",
+        "comments": [
+          {
+            "line": 1,
+            "type": "suggestion",
+            "text": "I had to read the whole function to see what check, s, g and a mean. Could we rename them to hasPassed(student), grade and attendance?"
+          },
+          {
+            "line": 3,
+            "type": "suggestion",
+            "text": "Is 20 the number of lessons? If the course length changes this breaks silently. Could we move it into a constant like TOTAL_LESSONS?"
+          }
+        ],
+        "why": [
+          "It starts with something positive: the logic is correct.",
+          "It explains the problem from the reader's point of view.",
+          "It suggests concrete names instead of only saying they are bad.",
+          "It requests changes because readability is one of the requirements."
+        ]
+      }
+    }
+  },
+  {
+    "id": "testing-edge-cases",
+    "topicId": "testing",
+    "title": "Testing Edge Cases",
+    "description": "Tests that pass are not always good tests. Find what these tests forget.",
+    "difficulty": "Medium",
+    "minutes": 7,
+    "exercises": 1,
+    "learn": [
+      "Check whether a test expects the right result",
+      "Find missing test cases",
+      "Explain why a test matters"
+    ],
+    "exercise": {
+      "file": "password.test.js",
+      "task": "Your teammate Noor wrote tests for isValidPassword(password). The test run is green. Review the tests in her pull request.",
+      "requirements": [
+        "A valid password has at least 8 characters",
+        "A valid password contains at least one number",
+        "The tests check both valid and invalid passwords"
+      ],
+      "example": { "input": "isValidPassword(\"abc\")", "output": "false" },
+      "code": [
+        "test(\"accepts a valid password\", () => {",
+        "  expect(isValidPassword(\"frogy2026\")).toBe(true);",
+        "});",
+        "",
+        "test(\"rejects a short password\", () => {",
+        "  expect(isValidPassword(\"abc\")).toBe(true);",
+        "});"
+      ],
+      "hint": {
+        "look": [
+          "Read each test name, then check if the expectation matches it.",
+          "List every requirement and look for a test that covers it.",
+          "A green test run does not mean the tests are correct."
+        ],
+        "write": [
+          "Name the requirement that is not tested.",
+          "Explain what could go wrong in production.",
+          "Offer an example test case."
+        ]
+      },
+      "issues": [
+        {
+          "id": "t1",
+          "lines": [6],
+          "category": "Wrong expectation",
+          "title": "The short-password test expects true",
+          "wrong": "The test is called \"rejects a short password\" but it expects true.",
+          "why": "This test passes when the function is broken and fails when it is correct. It gives the team false confidence.",
+          "improve": "Expect false for a short password.",
+          "fix": "  expect(isValidPassword(\"abc\")).toBe(false);"
+        },
+        {
+          "id": "t2",
+          "lines": [3, 5, 7],
+          "category": "Missing test",
+          "title": "No test for a password without a number",
+          "wrong": "None of the tests check the \"at least one number\" requirement.",
+          "why": "If someone breaks the number check, every test stays green and the bug reaches users.",
+          "improve": "Add a test with a long password without numbers that expects false.",
+          "fix": "test(\"rejects a password without a number\", () => {"
+        }
+      ],
+      "expectedDecision": "request_changes",
+      "expert": {
+        "decision": "request_changes",
+        "summary": "Thanks Noor! Good test names, they make the intent very clear. One expectation is flipped and one requirement is not covered yet.",
+        "comments": [
+          {
+            "line": 6,
+            "type": "issue",
+            "text": "This test is called \"rejects a short password\" but it expects true, so it passes when the function is broken. Should this be toBe(false)?"
+          },
+          {
+            "line": 7,
+            "type": "suggestion",
+            "text": "I could not find a test for the \"at least one number\" rule. Could we add one, for example isValidPassword(\"frogyfrogy\") should be false?"
+          }
+        ],
+        "why": [
+          "It praises the clear test names first.",
+          "It explains the risk: a green run that hides a broken function.",
+          "It gives a concrete example test the author can copy.",
+          "It requests changes because the tests can hide real bugs."
+        ]
+      }
+    }
+  }
+]

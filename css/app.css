@@ -1,0 +1,218 @@
+/* ==========================================================================
+   Code Croak — overrides only. Everything here is documented in DESIGN.md.
+   1. Brand fonts   2. Theme tokens (beer.css variables)   3. Brand helpers
+   ========================================================================== */
+
+/* 1. Brand fonts (self-hosted, no external library) ----------------------- */
+@font-face { font-family: "Fredoka"; font-weight: 500; font-display: swap; src: url("../assets/fonts/fredoka-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fredoka"; font-weight: 600; font-display: swap; src: url("../assets/fonts/fredoka-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fredoka"; font-weight: 700; font-display: swap; src: url("../assets/fonts/fredoka-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 400; font-display: swap; src: url("../assets/fonts/nunito-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 600; font-display: swap; src: url("../assets/fonts/nunito-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 700; font-display: swap; src: url("../assets/fonts/nunito-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 800; font-display: swap; src: url("../assets/fonts/nunito-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: swap; src: url("../assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; font-display: swap; src: url("../assets/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2"); }
+
+/* 2. Theme tokens — the style guide palette mapped onto beer.css variables -- */
+:root,
+body.light {
+  /* ---- Code Croak palette: these 12 values are the only colours in the app. ----
+     Main:        Mist #f1faee · Leaf #52b788 · Lily #2d6a4f · Pond #1b4332 · Sun #ffb703 · Berry #e63946
+     Supporting:  White #ffffff · Mint #e3f4ea · Light sun #fff4d6 · Light berry #fde6e7 · Moss #5c6f66 · Line #dce8df
+     Everything else refers to the beer.css variables below. */
+  --primary: #52b788;                    /* Leaf: main buttons, progress, selected */
+  --on-primary: #1b4332;                 /* Pond */
+  --primary-container: #e3f4ea;          /* Mint: correctly identified, icon circles */
+  --on-primary-container: #1b4332;
+  --secondary: #2d6a4f;                  /* Lily: app name, active states, links, icons */
+  --on-secondary: #ffffff;
+  --secondary-container: #e3f4ea;        /* Mint */
+  --on-secondary-container: #1b4332;
+  --tertiary: #ffb703;                   /* Sun: hint, streak, points (10% accent) */
+  --on-tertiary: #1b4332;
+  --tertiary-container: #fff4d6;         /* Light sun: hint, unnecessary comment */
+  --on-tertiary-container: #1b4332;
+  --error: #e63946;                      /* Berry: only for missed issues / errors */
+  --on-error: #ffffff;
+  --error-container: #fde6e7;            /* Light berry: missed issue */
+  --on-error-container: #1b4332;
+  --background: #f1faee;                 /* Mist: app background (60%) */
+  --on-background: #1b4332;              /* Pond: text */
+  --surface: #f1faee;
+  --on-surface: #1b4332;
+  --surface-variant: #e3f4ea;
+  --on-surface-variant: #5c6f66;         /* Moss: secondary text */
+  --outline: #5c6f66;
+  --outline-variant: #dce8df;            /* Line: borders, dividers */
+  --shadow: #1b4332;
+  --scrim: #1b4332;
+  --inverse-surface: #1b4332;            /* Pond: code blocks, dark banners */
+  --inverse-on-surface: #f1faee;         /* Mist: text on Pond */
+  --inverse-primary: #52b788;            /* Leaf: code keywords on Pond */
+  --surface-dim: #dce8df;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;   /* White: cards, dialogs, tab bar */
+  --surface-container-low: #ffffff;
+  --surface-container: #ffffff;
+  --surface-container-high: #ffffff;
+  --surface-container-highest: #e3f4ea;
+  --font: "Nunito", system-ui, sans-serif;
+  --font-icon: "Material Symbols Rounded";
+}
+
+/* 3. Brand helpers ---------------------------------------------------------- */
+
+/* Headings, buttons, chips and tab labels use Fredoka (style guide). */
+h1, h2, h3, h4, h5, h6, button, .button, .chip, nav.bottom span {
+  font-family: "Fredoka", var(--font);
+}
+
+/* Explanation / Expert example switch: two bordered rounded halves, selected one filled (wireframes). */
+.view-switch > .button { block-size: 3rem; }
+.view-switch > .button.border { background-color: var(--surface-container-lowest); border-width: 0.125rem; }
+
+/* Hint bar: full width, light sun, text left and a small Hint pill right (wireframes). */
+.hint-bar { justify-content: flex-start; box-shadow: none !important; }
+.hint-bar > .max { flex: 1; text-align: start; }
+button.hint-bar:hover { background-color: var(--tertiary) !important; }
+
+/* Chunky 3D buttons from the style guide: only on large (main) buttons. */
+:is(button, .button).large:not(.transparent):not(.border) { box-shadow: 0 0.25rem 0 var(--secondary); }
+:is(button, .button).large.border { box-shadow: 0 0.25rem 0 var(--outline-variant); }
+:is(button, .button).large.secondary { box-shadow: 0 0.25rem 0 var(--on-primary); }
+:is(button, .button).large:active { transform: translateY(0.15rem); box-shadow: none; }
+
+/* Mobile-first app width: the prototype is a phone app, also on a laptop. */
+[hidden] { display: none !important; }
+#topbar > nav, #tabbar { max-inline-size: 30rem; margin-inline: auto; inline-size: 100%; }
+/* beer.css sizes main with 100vw and clips overflow. On a phone emulator with a desktop
+   scrollbar, 100vw is wider than the screen, so the right edge got cut off. */
+main#app { box-sizing: border-box; inline-size: 100%; max-inline-size: min(100%, 30rem); margin-inline: auto; overflow: visible; }
+main#app :is(h1, h2, h3, h4, h5, h6):focus { outline: none; }
+
+/* beer.css removes padding from any element whose child has a *-margin helper
+   (:has(> [class*=margin])). Cards and dialogs should keep their padding. */
+:is(article, dialog):has(> [class*='margin']) { padding: var(--_padding, 1rem); }
+
+/* Long list text wraps instead of being cut off. */
+.list > li > .max { white-space: normal; min-inline-size: 0; overflow-wrap: anywhere; }
+#topbar .brand { gap: 0.6rem; }
+#topbar .brand img { block-size: 2.5rem; inline-size: auto; }
+body.no-shell main#app { padding-block-start: 1.5rem; }
+
+/* Mascot sizes */
+img.frogy { inline-size: 8rem; block-size: auto; }
+img.frogy.small { inline-size: 3.5rem; }
+img.frogy.large { inline-size: 11rem; }
+
+app-code, app-stepper, app-stats { display: block; }
+
+/* Code block (app-code): Pond background, JetBrains Mono, selectable lines. */
+.code-block { background: var(--inverse-surface); color: var(--inverse-on-surface); border-radius: 1rem; padding-block: 0.5rem; overflow-x: auto; font-family: "JetBrains Mono", monospace; font-size: 0.85rem; line-height: 1.8; }
+.code-block .line { border-radius: 0; display: flex; align-items: flex-start; outline-offset: -0.15rem; inline-size: 100%; padding-inline: 0.75rem; border: 0; background: none; color: inherit; font: inherit; text-align: start; cursor: default; border-inline-start: 0.25rem solid transparent; }
+.code-block .line[data-selectable] { cursor: pointer; }
+.code-block .line[data-selectable]:hover { background: color-mix(in srgb, var(--inverse-primary) 12%, transparent); }
+.code-block .line .no { inline-size: 2rem; flex: none; opacity: 0.55; user-select: none; }
+/* Long lines wrap on phones instead of running off screen. Indentation is padding, and wrapped
+   parts get a 2-character hanging indent, so the code stays readable (like GitHub mobile). */
+.code-block .line .src { --indent: 0; white-space: pre-wrap; overflow-wrap: anywhere; flex: 1; min-inline-size: 0; padding-inline-start: calc((var(--indent) + 2) * 1ch); text-indent: -2ch; }
+.code-block .src.indent-1 { --indent: 1; } .code-block .src.indent-2 { --indent: 2; } .code-block .src.indent-3 { --indent: 3; }
+.code-block .src.indent-4 { --indent: 4; } .code-block .src.indent-5 { --indent: 5; } .code-block .src.indent-6 { --indent: 6; }
+.code-block .src.indent-7 { --indent: 7; } .code-block .src.indent-8 { --indent: 8; }
+@media (max-width: 420px) { .code-block { font-size: 0.78rem; } }
+.code-block .line .mark { flex: none; padding-inline-start: 0.75rem; font-size: 1rem; }
+.code-block .line.selected { background: color-mix(in srgb, var(--tertiary) 22%, transparent); border-inline-start-color: var(--tertiary); }
+.code-block .line.commented { border-inline-start-color: var(--inverse-primary); }
+.code-block .line.found { background: color-mix(in srgb, var(--primary) 28%, transparent); border-inline-start-color: var(--primary); }
+.code-block .line.missed { background: color-mix(in srgb, var(--error) 30%, transparent); border-inline-start-color: var(--error); }
+.code-block .line.unnecessary { background: color-mix(in srgb, var(--tertiary) 22%, transparent); border-inline-start-color: var(--tertiary); }
+.code-block .kw { color: var(--inverse-primary); }
+.code-block .str { color: var(--tertiary); }
+code.inline { font-family: "JetBrains Mono", monospace; background: var(--surface-variant); padding: 0.1rem 0.4rem; border-radius: 0.4rem; font-size: 0.9em; }
+
+/* Review stepper (app-stepper) */
+.stepper { display: flex; align-items: flex-start; gap: 0; list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.stepper .step { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; inline-size: 4.25rem; flex: none; font-size: 0.75rem; font-weight: 700; color: var(--on-surface-variant); text-align: center; }
+.stepper .dot { inline-size: 1.75rem; block-size: 1.75rem; border-radius: 50%; border: 0.2rem solid var(--outline-variant); background: var(--surface-container-lowest); display: grid; place-items: center; }
+.stepper .dot i { font-size: 1rem; color: var(--on-primary); }
+.stepper .done .dot { background: var(--primary); border-color: var(--primary); }
+.stepper .current { color: var(--on-surface); }
+.stepper .current .dot { border-color: var(--primary); box-shadow: 0 0 0 0.25rem var(--primary-container); }
+.stepper .bar { flex: 1; block-size: 0.2rem; border-radius: 1rem; background: var(--outline-variant); margin-block-start: 0.8rem; }
+.stepper .bar.done { background: var(--primary); }
+
+/* Progress bars: thicker and rounded, like the style guide. */
+progress.thick { block-size: 0.75rem; border-radius: 1rem; }
+
+
+/* 4. Spacing ----------------------------------------------------------------
+   Every block on a screen gets 1rem space from the one above it, the main
+   (large) buttons get 1.5rem. Elements with a beer.css *-margin helper keep it. */
+main#app { padding: 1rem 1rem 2rem; }
+main#app > :not([class*='margin'], dialog, .overlay) + :not([class*='margin'], dialog, .overlay),
+main#app form > :not([class*='margin']) + :not([class*='margin'], dialog, .overlay),
+main#app section > :not([class*='margin']) + :not([class*='margin']) { margin-block-start: 1rem; }
+main#app :is(button, .button).large.responsive:not([class*='margin']) { margin-block-start: 1.5rem; }
+main#app :is(button, .button).large.responsive + :is(button, .button):not([class*='margin']) { margin-block-start: 0.75rem; }
+#comment-list:empty { display: none; }
+main#app article > nav + p, main#app article > p + nav { margin-block-start: 0.75rem; }
+.chip.medium { padding-inline: 1rem; }
+
+/* 5. Interaction: hover / press colours ------------------------------------- */
+:is(button, .button, .chip, a.row, nav.bottom > a, .list a) { transition: background-color var(--speed1), color var(--speed1), box-shadow var(--speed1), transform var(--speed1); }
+/* beer.css colour helpers are !important, so hover colours need it too. */
+:is(button, .button).primary:not(:disabled):hover { background-color: var(--secondary) !important; color: var(--on-secondary) !important; }
+:is(button, .button).secondary:not(:disabled):hover { background-color: var(--on-surface) !important; color: var(--on-secondary) !important; }
+:is(button, .button).border:not(:disabled):hover { background-color: var(--primary-container); border-color: var(--primary); color: var(--on-primary-container); }
+main#app a.row.border:hover { border-color: var(--primary); background-color: var(--primary-container); }
+main#app :is(button, .button):disabled { opacity: 1; cursor: not-allowed; background-color: var(--surface-variant); color: var(--on-surface-variant); border-color: transparent; box-shadow: none; }
+
+/* 6. Bottom tab bar: bubbly, one colour per tab ---------------------------- */
+#tabbar { background-color: var(--surface-container-lowest); border-top: 0.125rem solid var(--outline-variant); min-block-size: 5rem; }
+#tabbar > a { inline-size: 4.5rem; font-weight: 700; color: var(--on-surface-variant); }
+#tabbar > a > i { padding: 0.35rem 1.1rem; border-radius: 1rem; transition: transform var(--speed2), background-color var(--speed1); }
+#tabbar > a:nth-child(1) { --tab: var(--primary); }
+#tabbar > a:nth-child(2) { --tab: var(--tertiary); }
+#tabbar > a:nth-child(3) { --tab: var(--secondary); }
+#tabbar > a:nth-child(4) { --tab: var(--primary); }      /* Leaf — Berry stays reserved for errors */
+#tabbar > a > i { color: var(--tab); }
+#tabbar > a:hover > i { background-color: color-mix(in srgb, var(--tab) 15%, transparent); transform: translateY(-0.125rem); }
+#tabbar > a.active { color: var(--on-surface); }
+#tabbar > a.active > i {
+  background-color: var(--tab);
+  color: var(--surface-container-lowest);
+  font-variation-settings: "FILL" 1;
+  box-shadow: 0 0.2rem 0 color-mix(in srgb, var(--tab) 55%, var(--on-surface));
+  transform: translateY(-0.125rem);
+}
+
+/* 7. Wordmark: "Code Croak" in Lily (style guide) ---------------------------- */
+.wordmark { font-family: "Fredoka", var(--font); font-weight: 700; color: var(--secondary); }
+
+/* 8. Collapsible requirements: clearly changes when opened ------------------ */
+main#app details.requirements { background-color: var(--surface-container-lowest); border: 0.125rem solid var(--outline-variant); transition: background-color var(--speed1), border-color var(--speed1); }
+details.requirements > summary { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+details.requirements > summary > .chevron { margin-inline-start: auto; transition: transform var(--speed2); }
+main#app details.requirements:hover { border-color: var(--primary); }
+main#app details.requirements[open] { background-color: var(--primary-container); border-color: var(--primary); color: var(--on-primary-container); }
+details.requirements[open] > summary > .chevron { transform: rotate(180deg); }
+details.requirements ol { margin: 0.5rem 0 0; padding-inline-start: 1.5rem; }
+
+/* 9. Only things you can click react to hover --------------------------------
+   Labels like "1 exercise", "Line 3", "Issue" or the streak use chip / button styling
+   but are not interactive, so they get no hover overlay and a normal cursor. */
+:is(span, div, li).chip, span.button { cursor: default; }
+:is(span, div, li).chip::after, span.button::after { display: none !important; }
+
+/* Learn: study chapter cards */
+main#app a.chapter-card { display: block; }
+main#app a.chapter-card:hover { border-color: var(--primary); background-color: var(--primary-container); }
+main#app a.chapter-card ul { padding-inline-start: 1.25rem; }
+
+/* Long names (e.g. the guest account) wrap instead of being cut off */
+main#app .row > .max { min-inline-size: 0; }
+main#app h4 { overflow-wrap: anywhere; }
+
+/* Back row: arrow and text are one tap target (min 48 px) */
+.back-link { min-block-size: 3rem; padding-inline: 0.5rem 1rem; font-size: 1.125rem; }

@@ -1,0 +1,164 @@
+[
+  {
+    "id": "what-is-code-review",
+    "order": 1,
+    "title": "What is a code review?",
+    "icon": "school",
+    "minutes": 4,
+    "summary": "Why teams review each other's code and what a reviewer is looking for.",
+    "objectives": [
+      "Explain what a code review is and why teams do it",
+      "Name the main things a reviewer checks",
+      "Know the three steps of a review: read, comment, decide"
+    ],
+    "sections": [
+      {
+        "heading": "Reviewing is reading with a purpose",
+        "text": "Before code is merged into the main project, a teammate reads it in a pull request. The goal is not to find someone to blame, but to catch problems early and share knowledge. A bug found in review costs minutes; the same bug found by users can cost days."
+      },
+      {
+        "heading": "What a reviewer checks",
+        "points": [
+          "Correctness: does the code do what the requirements say?",
+          "Edge cases: what happens with empty, very large or unexpected input?",
+          "Readability: can a teammate understand it without asking?",
+          "Tests: do the tests prove that it works?"
+        ]
+      },
+      {
+        "heading": "The three steps",
+        "text": "Every review in Code Croak follows the same steps as a real pull request: read the code next to the requirements, leave comments on specific lines, and make a decision: approve or request changes."
+      }
+    ],
+    "takeaway": "A review is about the code, not the person. You are helping your teammate ship something better."
+  },
+  {
+    "id": "reading-functions",
+    "order": 2,
+    "title": "Reading code against requirements",
+    "icon": "code",
+    "minutes": 5,
+    "lessonId": "functions-basics",
+    "summary": "How to check if a function really does what it promises.",
+    "objectives": [
+      "Compare code line by line with its requirements",
+      "Trace an example input through a function",
+      "Spot off-by-one errors and missing edge cases"
+    ],
+    "sections": [
+      {
+        "heading": "Start with the requirements",
+        "text": "Read the requirements before the code. For each requirement, find the line that handles it. If you cannot find one, that is already a review comment."
+      },
+      {
+        "heading": "Run the example in your head",
+        "text": "Take the example input and follow it through the code, step by step. Write down the value of each variable. Off-by-one errors usually show up here: a loop that starts at 1 instead of 0 skips the first item.",
+        "code": [
+          "for (let i = 1; i < grades.length; i++) {",
+          "  sum += grades[i];",
+          "}"
+        ]
+      },
+      {
+        "heading": "Think about the edges",
+        "points": [
+          "What if the list is empty?",
+          "What if there is only one item?",
+          "What if a value is 0 or negative?"
+        ]
+      }
+    ],
+    "takeaway": "\"It runs without errors\" is not the same as \"it is correct\". Always check the result."
+  },
+  {
+    "id": "clean-code",
+    "order": 3,
+    "title": "Clean, readable code",
+    "icon": "auto_fix_high",
+    "minutes": 4,
+    "lessonId": "clean-code-naming",
+    "summary": "Code that works can still be hard to read or change.",
+    "objectives": [
+      "Recognise unclear names",
+      "Spot magic numbers",
+      "Suggest a concrete improvement instead of only criticising"
+    ],
+    "sections": [
+      {
+        "heading": "Names should explain meaning",
+        "text": "Short names like s, g or check force readers to work out what they mean. A good name tells you what a value is or what a function does, so the code reads almost like a sentence.",
+        "code": [
+          "function hasPassed(student) {",
+          "  return student.grade >= 5.5;",
+          "}"
+        ]
+      },
+      {
+        "heading": "Avoid magic numbers",
+        "text": "A number like 20 hidden in a calculation does not say what it is. Put it in a named constant such as TOTAL_LESSONS, so the next person knows what to change."
+      }
+    ],
+    "takeaway": "When code works, review it for the next person who has to read or change it."
+  },
+  {
+    "id": "testing",
+    "order": 4,
+    "title": "Reviewing tests",
+    "icon": "science",
+    "minutes": 5,
+    "lessonId": "testing-edge-cases",
+    "summary": "A green test run does not always mean the tests are good.",
+    "objectives": [
+      "Check if a test expects the right result",
+      "Find requirements that have no test",
+      "Suggest a missing test case"
+    ],
+    "sections": [
+      {
+        "heading": "Read the name, then the expectation",
+        "text": "A test name says what should happen. Check that the expectation really matches it. A test called \"rejects a short password\" that expects true will pass when the code is broken."
+      },
+      {
+        "heading": "Every requirement needs a test",
+        "points": [
+          "List the requirements",
+          "Find a test for each one",
+          "Missing test? Suggest one with a concrete example"
+        ]
+      }
+    ],
+    "takeaway": "Tests are code too. Review them as carefully as the feature itself."
+  },
+  {
+    "id": "writing-comments",
+    "order": 5,
+    "title": "Writing helpful review comments",
+    "icon": "chat",
+    "minutes": 4,
+    "summary": "How to give feedback that is clear, kind and easy to act on.",
+    "objectives": [
+      "Point to a specific line and explain the impact",
+      "Suggest a fix or ask a question",
+      "Choose between approve and request changes"
+    ],
+    "sections": [
+      {
+        "heading": "A good comment has three parts",
+        "points": [
+          "Where: the exact line",
+          "Why: what goes wrong, with an example",
+          "What next: a suggestion or a question"
+        ]
+      },
+      {
+        "heading": "Keep the tone friendly",
+        "text": "Start with what is good, talk about the code instead of the person, and phrase fixes as questions: \"Could we start the loop at 0?\" works better than \"This is wrong.\""
+      },
+      {
+        "heading": "Make the decision",
+        "text": "Approve when the code meets all requirements. Request changes when something must be fixed before merging. Small style tips alone are usually not a reason to block."
+      }
+    ],
+    "takeaway": "The best review comments teach something, not only point out a mistake."
+  }
+]

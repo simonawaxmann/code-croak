@@ -1,0 +1,30 @@
+[
+  {
+    "id": "language",
+    "question": "Which language do you use most?",
+    "options": [
+      { "value": "JavaScript", "label": "JavaScript" },
+      { "value": "Python", "label": "Python" },
+      { "value": "Java", "label": "Java" },
+      { "value": "C#", "label": "C#" }
+    ]
+  },
+  {
+    "id": "level",
+    "question": "How much code-review experience do you have?",
+    "options": [
+      { "value": "Beginner", "label": "New to code review" },
+      { "value": "Intermediate", "label": "I've done a few reviews" },
+      { "value": "Advanced", "label": "I review code often" }
+    ]
+  },
+  {
+    "id": "goal",
+    "question": "How many reviews do you want to practise per week?",
+    "options": [
+      { "value": "1", "label": "1 review · casual" },
+      { "value": "3", "label": "3 reviews · regular" },
+      { "value": "5", "label": "5+ reviews · serious" }
+    ]
+  }
+]

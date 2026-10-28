@@ -1,0 +1,15 @@
+[
+  {
+    "id": "u-demo",
+    "name": "Sam",
+    "email": "demo@codecroak.app",
+    "password": "frogy123",
+    "level": "Beginner",
+    "language": "JavaScript",
+    "goal": 3,
+    "streak": 3,
+    "points": 120,
+    "lastActive": null,
+    "onboarded": true
+  }
+]

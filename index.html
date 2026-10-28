@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google" content="notranslate">
+  <title>Code Croak</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link href="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.css" rel="stylesheet">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.js"></script>
+  <link href="css/app.css" rel="stylesheet">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body class="light">
+  <header id="topbar" class="fixed" hidden>
+    <nav>
+      <a href="#/" class="row brand" aria-label="Code Croak home">
+        <img src="assets/logo.svg" alt="" class="small">
+        <h6 class="small wordmark">Code Croak</h6>
+      </a>
+      <div class="max"></div>
+      <app-stats></app-stats>
+    </nav>
+  </header>
+
+  <main id="app" class="responsive" tabindex="-1"></main>
+
+  <nav id="tabbar" class="bottom" aria-label="Main" hidden>
+    <a href="#/" data-tab="home"><i>home</i><span>Home</span></a>
+    <a href="#/learn" data-tab="learn"><i>menu_book</i><span>Learn</span></a>
+    <a href="#/progress" data-tab="progress"><i>bar_chart</i><span>Progress</span></a>
+    <a href="#/profile" data-tab="profile"><i>person</i><span>Profile</span></a>
+  </nav>
+</body>
+</html>

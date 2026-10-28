@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 12 160 156" role="img" aria-label="Code Croak logo">
+ <g stroke="#1B4332" stroke-width="10" fill="#52B788">
+  <ellipse cx="110" cy="108" rx="74" ry="54"/><circle cx="70" cy="66" r="24"/><circle cx="150" cy="66" r="24"/>
+ </g>
+ <g fill="#52B788"><ellipse cx="110" cy="108" rx="74" ry="54"/><circle cx="70" cy="66" r="24"/><circle cx="150" cy="66" r="24"/></g>
+ <ellipse cx="72" cy="70" rx="7" ry="9" fill="#1B4332"/><ellipse cx="148" cy="70" rx="7" ry="9" fill="#1B4332"/>
+ <circle cx="74.5" cy="66" r="2.6" fill="#fff"/><circle cx="150.5" cy="66" r="2.6" fill="#fff"/>
+ <circle cx="104" cy="94" r="2.6" fill="#1B4332"/><circle cx="116" cy="94" r="2.6" fill="#1B4332"/>
+ <ellipse cx="60" cy="114" rx="14" ry="10" fill="#FFC4A8"/><ellipse cx="160" cy="114" rx="14" ry="10" fill="#FFC4A8"/>
+ <path d="M95 110 L85 120 L95 130 M125 110 L135 120 L125 130 M114 106 L106 134" fill="none" stroke="#1B4332" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ <g stroke="#1B4332" stroke-width="5" stroke-linejoin="round">
+  <path d="M90 58 V42 H130 V58 Q110 64 90 58Z" fill="#2D6A4F"/>
+  <polygon points="110,18 152,32 110,46 68,32" fill="#2D6A4F"/>
+ </g>
+ <path d="M152 32 L156 52" stroke="#FFB703" stroke-width="4" stroke-linecap="round"/><circle cx="156.5" cy="55" r="5.5" fill="#FFB703" stroke="#1B4332" stroke-width="3"/>
+
+</svg>

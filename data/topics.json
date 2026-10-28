@@ -1,0 +1,23 @@
+[
+  {
+    "id": "functions",
+    "title": "Functions",
+    "description": "Check if a function really does what it promises.",
+    "icon": "code",
+    "order": 1
+  },
+  {
+    "id": "clean-code",
+    "title": "Clean code",
+    "description": "Spot code that works but is hard to read or change.",
+    "icon": "auto_fix_high",
+    "order": 2
+  },
+  {
+    "id": "testing",
+    "title": "Testing",
+    "description": "Review tests and find the cases they forget.",
+    "icon": "science",
+    "order": 3
+  }
+]
